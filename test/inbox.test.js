@@ -5,6 +5,8 @@ const provider = ganache.provider();
 const web3 = new Web3(provider);
 const { interface, bytecode } = require('../compile');
 
+const INITIAL_STRING = "Hi there Batman";
+
 /*
 class Car {
   park() {
@@ -48,6 +50,12 @@ describe('Inbox tests', () => {
 
   it('it has a default message', async () => {
     const message = await inbox.methods.message().call();
-    assert.equal(message, 'Hi there Batman');
-  })
+    assert.equal(  message, INITIAL_STRING);
+  });
+
+  it('can change the message', async () => {
+    await inbox.methods.setMessage('new message').send({ from: accounts[0]});
+    const message = await inbox.methods.message().call();
+    assert.equal(message, 'new message')
+  });
 })
