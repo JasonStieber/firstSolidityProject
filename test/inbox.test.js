@@ -50,7 +50,7 @@ describe('Inbox tests', () => {
 
   it('it has a default message', async () => {
     const message = await inbox.methods.message().call();
-    assert.equal(  message, INITIAL_STRING);
+    assert.equal( message, INITIAL_STRING );
   });
 
   it('can change the message', async () => {
